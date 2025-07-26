@@ -9,47 +9,44 @@ import Foundation
 
 
 class Presenter: ObservableObject {
+    @Published var isLoggedIn = false 
+    
     @Published var cities = ["Москва", "Санкт-Петербург"]
     @Published var categories: [FoodCategory] = []
     @Published var menuItems: [Meal] = []
-    @Published var selectedCategory: String = ""
-
-//    var menuSections: [MenuSection] {
-//        categories.map { category in
-//            MenuSection(
-//                id: category.id,
-//                category: category,
-//                items: menuItems.filter { $0.categoryId == category.id }
-//            )
-//        }
-//    }
-
+    
+    @Published var selectedCategory = ""
+    @Published var selectedCity = "Москва"
+    
+    
+    var menuSections: [MenuSection] {
+        categories.map { category in
+            MenuSection(
+                id: category.id,
+                category: category.name,
+                items: menuItems.filter { $0.category == category.id }
+            )
+        }
+    }
+    
+    
+    
     init() {
-        loadMockData()
+        
         Task {
             try await loadData()
         }
     }
-
-    func loadMockData() {
-        self.categories = [
-            .init(id: "pizza", name: "Pizza"),
-            .init(id: "sushi", name: "Sushi"),
-            .init(id: "drinks", name: "Drinks")
-        ]
-
-        self.selectedCategory = categories.first?.id ?? ""
-    }
     
+    
+    @MainActor
     func loadData() async throws {
         guard let url = URL(string: "https://www.themealdb.com/api/json/v1/1/search.php?f=p") else {
             print("Invalid URL")
             //loadingState = .failed
             return
         }
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "GET"
+        
         let decoder = JSONDecoder()
         
         
@@ -57,7 +54,14 @@ class Presenter: ObservableObject {
             let (data, _) = try await URLSession.shared.data(from: url)
             if let decodedData = try? decoder.decode(Meals.self, from: data) {
                 self.menuItems = decodedData.meals
-                    //loadingState = .loaded
+                
+                self.categories = Array(
+                    Set(self.menuItems.map { $0.category })
+                ).sorted().map { categoryName in
+                    FoodCategory(id: categoryName, name: categoryName)
+                }
+                self.selectedCategory = categories.first?.name ?? ""
+                //loadingState = .loaded
             }
             
         } catch {

@@ -10,14 +10,14 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var presenter = Presenter()
     
-    var isUnlocked = true
-    
     var body: some View {
         
-        if isUnlocked {
+        if presenter.isLoggedIn {
             
-            TabView {
+            TabView {               //Вынести в отдельный вью 
                 MenuView(presenter: presenter)
+                    .toolbarBackground(.white, for: .tabBar)
+                
                     .tabItem {
                         Label("Меню", systemImage: "fork.knife")
                     }
@@ -37,8 +37,10 @@ struct ContentView: View {
             .accentColor(.pink)
         }
         else {
-            LoginView()
+            LoginView(presenter: presenter)
         }
+        
+        
     }
 }
 

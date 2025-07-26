@@ -12,37 +12,48 @@ struct MealCardView: View {
     
     var body: some View {
         
-        LazyHStack (spacing: 48) {
+        HStack(alignment: .top, spacing: 16) {
             
-            Rectangle()
-                .frame(width: 132, height: 132)
-                .foregroundStyle(.gray)
-                .clipShape(.rect(cornerRadius: 20))
+            AsyncImage(url: URL(string: meal.image)) { image in
+                image.resizable()
+            } placeholder: {
+                Rectangle().fill(.gray.opacity(0.2))
+            }
+            .frame(width: 132, height: 132)
+            .clipShape(.rect(cornerRadius: 20))
+            
+            Spacer()
             
             VStack (alignment: .leading, spacing: 8) {
                 Text(meal.name)
                     .font(Font.system(size: 17, weight: .bold))
                 
                 Text(meal.textIngridients)
+                    .lineLimit(3)
                     .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Spacer()
                 
                 HStack {
                     Spacer()
                     Text("от \(meal.price) р")
                         .font(.caption)
                         .padding(8)
+                        .padding(.horizontal,10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 6)
                                 .stroke(.pink, lineWidth: 1)
                         )
                 }
             }
-            .frame(width: 171, height: 124, alignment: .leading)
-            
         }
+        .padding()
+        .padding(.trailing,8)
+        .frame(height: 156)
     }
 }
     
     #Preview {
-        //MealCardView(meal: presenter.menuItems[0])
+        MealCardView(meal: .example)
     }

@@ -17,66 +17,64 @@ struct MenuView: View {
         NavigationStack {
             ZStack {
                 Color.gray
-                    .opacity(0.1)
+                    .opacity(0.1)  //поменять цвет
                     .ignoresSafeArea()
                 
-                VStack(alignment: .leading) {
-                    
-                    ScrollView(.horizontal) {
+                    ScrollView {
                         
-                        LazyHStack (spacing: 10) {
-                            Image("baner1")
-                                .resizable()
-                                //.frame(width: 300, height: 112)
-                                .clipShape(.rect(cornerRadius: 10))
-                                .scaledToFill()
+                        LazyVStack(alignment: .leading) {
                             
-                            Image("baner2")
-                                .resizable()
-                                .foregroundStyle(.yellow)
-                                .clipShape(.rect(cornerRadius: 10))
-                                .scaledToFill()
-                        }
-                    }
-                    .frame(height: 112)
-                    .padding(.vertical)
-                    .padding(.leading)
-                    .scrollIndicators(.hidden)
-                    
-                    
-                    Picker("Category", selection: $presenter.selectedCategory) {
-                        ForEach(presenter.categories) { category in //.allCases) { category in
-                            Text(category.name)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    
-                    
-                    .padding(.leading)
-                    
-                    List(presenter.menuItems) { meal in
+                            ScrollView(.horizontal) {
+                                
+                                LazyHStack (spacing: 16) {          //Можно выделить в отдельный вью
+                                    Image("baner1")                 //добавить цикл (forech + модифаеры 1 раз)
+                                        .resizable()
+                                        .clipShape(.rect(cornerRadius: 10))
+                                        .scaledToFill()
+                                    
+                                    Image("baner2")
+                                        .resizable()
+                                        .clipShape(.rect(cornerRadius: 10))
+                                        .scaledToFill()
+                                }
+                            }
+                            .frame(height: 112)
+                            .padding(.leading)
+                            .scrollIndicators(.hidden)
+                            
+                            
+                            StickyCategoryBar(presenter: presenter)
+                                .padding(.vertical)
+                            
                         
-                        MealCardView(meal: meal)
-
-                        .listRowInsets(.init(top: 12, leading: 0, bottom: 12, trailing: 0))
-                    }
-                    .scrollContentBackground(.hidden)
-                    .background(
-                        Color.white.edgesIgnoringSafeArea(.all)
-                    )
-                    .clipShape(.rect(cornerRadius: 20))
-                    
-                }
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Picker("Город", selection: $presenter.cities[0]) {
-                            ForEach(presenter.cities, id: \.self) { city in
-                                Text(city)
+                            LazyVStack(alignment: .leading, spacing: 0) {
+                                
+                                ForEach(presenter.menuSections) { section in
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        ForEach(section.items) { meal in
+                                            MealCardView(meal: meal)
+                                                .padding(.top)
+                                            Divider()
+                                        }
+                                    }
+                                }
+                                .scrollContentBackground(.hidden)
+                                .background(Color.white)
+                                .clipShape(.rect(cornerRadius: 20))
                             }
                         }
-                        
                     }
-                }
+                    
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Picker("Город", selection: $presenter.selectedCity) { 
+                                ForEach(presenter.cities, id: \.self) { city in
+                                    Text(city)
+                                }
+                            }
+                            
+                        }
+                    }
             }
         }
     }

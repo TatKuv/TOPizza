@@ -12,10 +12,10 @@ struct Meal: Codable, Identifiable {
     let image: String
     let name: String
     let category: String
-    let ingridients: [String]
+    let ingredients: [String]
     
     var textIngridients: String {
-        ingridients.joined(separator: ", ").capitalized
+        ingredients.joined(separator: ", ").capitalized
     }
     
     let price = 234
@@ -25,8 +25,7 @@ struct Meal: Codable, Identifiable {
         case image = "strMealThumb"
         case name = "strMeal"
         case category = "strCategory"
-        case ingridients = "strIngredient1"
-        //case price
+        case ingredients = "strIngredient1" //Заменит, добавить побольше ингедиентов
     }
     
     init(from decoder: any Decoder) throws {
@@ -38,7 +37,18 @@ struct Meal: Codable, Identifiable {
         self.name = try container.decode(String.self, forKey: .name)
         self.category = try container.decode(String.self, forKey: .category)
         
-        self.ingridients = [try container.decode(String.self, forKey: .ingridients)]
+        self.ingredients = [try container.decode(String.self, forKey: .ingredients)]
         
     }
+    
+    
+    init () {
+        self.id = UUID().uuidString
+        self.image = ""
+        self.name = "Test dish"
+        self.category = "New"
+        self.ingredients = ["Sugar", "flour", "eggs","salt", "milk", "vanilla"]
+    }
+    
+    static let example = Meal()
 }
