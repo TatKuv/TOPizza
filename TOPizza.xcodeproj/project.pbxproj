@@ -12,7 +12,6 @@
 		312B4C842E33A8B60048885F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B4C7C2E33A8B60048885F /* ContentView.swift */; };
 		312B4C862E33A8B60048885F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B4C7E2E33A8B60048885F /* LoginView.swift */; };
 		312B4C892E33A8B60048885F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B4C812E33A8B60048885F /* MenuView.swift */; };
-		312B4C922E35025C0048885F /* StickyCategoryBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B4C912E35025C0048885F /* StickyCategoryBarContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +21,6 @@
 		312B4C7C2E33A8B60048885F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		312B4C7E2E33A8B60048885F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		312B4C812E33A8B60048885F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		312B4C912E35025C0048885F /* StickyCategoryBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyCategoryBarContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,7 +50,6 @@
 				312B4C662E319D390048885F /* MealCardView.swift */,
 				312B4C812E33A8B60048885F /* MenuView.swift */,
 				312B4C682E31B9580048885F /* StickyCategoryBar.swift */,
-				312B4C912E35025C0048885F /* StickyCategoryBarContainerView.swift */,
 				312B4BFE2E3126D10048885F /* TOPizza */,
 				312B4BFD2E3126D10048885F /* Products */,
 			);
@@ -142,7 +139,6 @@
 			files = (
 				312B4C842E33A8B60048885F /* ContentView.swift in Sources */,
 				312B4C862E33A8B60048885F /* LoginView.swift in Sources */,
-				312B4C922E35025C0048885F /* StickyCategoryBarContainerView.swift in Sources */,
 				312B4C892E33A8B60048885F /* MenuView.swift in Sources */,
 				312B4C692E31B9580048885F /* StickyCategoryBar.swift in Sources */,
 				312B4C672E319D390048885F /* MealCardView.swift in Sources */,
