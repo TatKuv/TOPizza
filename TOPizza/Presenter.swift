@@ -16,6 +16,7 @@ class Presenter: ObservableObject {
     @Published var menuItems: [Meal] = []
     
     @Published var selectedCategory = ""
+    @Published var hasUserInteractedWithCategory = false
     @Published var selectedCity = "Москва"
     
     
@@ -58,9 +59,10 @@ class Presenter: ObservableObject {
                 self.categories = Array(
                     Set(self.menuItems.map { $0.category })
                 ).sorted().map { categoryName in
-                    FoodCategory(id: categoryName, name: categoryName)
+                    FoodCategory(id: categoryName, name: categoryName)   //id == name 
                 }
                 self.selectedCategory = categories.first?.name ?? ""
+                self.hasUserInteractedWithCategory = false
                 //loadingState = .loaded
             }
             

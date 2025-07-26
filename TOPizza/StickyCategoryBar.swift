@@ -30,6 +30,7 @@ struct StickyCategoryBar: View {
                             .onTapGesture {
                                 withAnimation(.easeInOut) {
                                     presenter.selectedCategory = category.id
+                                    presenter.hasUserInteractedWithCategory = true
                                 }
                             }
                     }

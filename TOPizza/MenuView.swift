@@ -10,7 +10,7 @@ import SwiftUI
 struct MenuView: View {
     @ObservedObject var presenter: Presenter
     
-    //@State private var offset = CGSize.zero
+    @State private var barOffset: CGFloat = 0
     
     var body: some View {
         
@@ -20,6 +20,7 @@ struct MenuView: View {
                     .opacity(0.1)  //поменять цвет
                     .ignoresSafeArea()
                 
+                ScrollViewReader { proxy in
                     ScrollView {
                         
                         LazyVStack(alignment: .leading) {
@@ -37,7 +38,7 @@ struct MenuView: View {
                                         .clipShape(.rect(cornerRadius: 10))
                                         .scaledToFill()
                                 }
-                            }
+                            } //банеры
                             .frame(height: 112)
                             .padding(.leading)
                             .scrollIndicators(.hidden)
@@ -45,10 +46,24 @@ struct MenuView: View {
                             
                             StickyCategoryBar(presenter: presenter)
                                 .padding(.vertical)
+                                .zIndex(1)
                             
-                        
+                            
                             LazyVStack(alignment: .leading, spacing: 0) {
-                                
+                                    
+//                                if let section = presenter.menuSections.first(where: { $0.category == presenter.selectedCategory }) {
+//                                    VStack(alignment: .leading, spacing: 8) {
+//                                        ForEach(section.items) { meal in
+//                                            MealCardView(meal: meal)
+//                                                .padding(.top)
+//                                            Divider()
+//                                        }
+//                                    }
+//                                    .scrollContentBackground(.hidden)
+//                                    .background(Color.white)
+//                                    .clipShape(.rect(cornerRadius: 20))
+//                                }
+                                    
                                 ForEach(presenter.menuSections) { section in
                                     VStack(alignment: .leading, spacing: 8) {
                                         ForEach(section.items) { meal in
@@ -65,6 +80,13 @@ struct MenuView: View {
                         }
                     }
                     
+                    .onChange(of: presenter.selectedCategory) { categoryId in
+                        guard presenter.hasUserInteractedWithCategory else { return }
+                        withAnimation {
+                            proxy.scrollTo(categoryId, anchor: .top)
+                        }
+                    }
+                    
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             Picker("Город", selection: $presenter.selectedCity) { 
@@ -75,6 +97,7 @@ struct MenuView: View {
                             
                         }
                     }
+                }
             }
         }
     }

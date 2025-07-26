@@ -13,6 +13,8 @@ struct LoginView: View {
     @State private var loginText: String = ""
     @State private var passwordText: String = ""
     
+    @State private var showError = false
+    @State private var errorText = "Неверный логин или пароль"
     
     var body: some View {
         NavigationStack {
@@ -65,6 +67,10 @@ struct LoginView: View {
                         Button {
                             if loginText == "Qwerty123" && passwordText == "Qwerty123" {
                                 presenter.isLoggedIn = true
+                            } else {
+                                withAnimation {
+                                    showError = true
+                                }
                             }
                             
                         } label: {
