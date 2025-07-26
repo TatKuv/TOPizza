@@ -11,7 +11,7 @@ import Foundation
 class Presenter: ObservableObject {
     @Published var isLoggedIn = false 
     
-    @Published var cities = ["Москва", "Санкт-Петербург"]
+    @Published var cities = ["Москва", "Санкт-Петербург", "Краснодар"]
     @Published var categories: [FoodCategory] = []
     @Published var menuItems: [Meal] = []
     

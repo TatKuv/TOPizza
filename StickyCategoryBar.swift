@@ -35,8 +35,9 @@ struct StickyCategoryBar: View {
                             }
                     }
                 }
-                .padding(.horizontal)
             }
+            .padding()
+            .background(.grayBackground)
         }
     
 }

@@ -19,7 +19,7 @@ struct LoginView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.gray.opacity(0.1)
+                Color.grayBackground
                     .ignoresSafeArea()
                 
                 
@@ -82,13 +82,12 @@ struct LoginView: View {
                                 .background(Color.pink)
                                 .cornerRadius(20)
                         }
-                        .padding(.horizontal, 32)
+                        .padding(.horizontal, 16)
                         .padding(.top, 8)
                     }
                     .padding(.bottom, 16)
                     .background(.white)
                 }
-                
                 
                 .navigationTitle("Авторизация")
                 .navigationBarTitleDisplayMode(.inline)
