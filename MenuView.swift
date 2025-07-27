@@ -46,6 +46,10 @@ struct MenuView: View {
                                 LazyVStack(alignment: .leading, spacing: 0) {
                                     
                                     ForEach(presenter.menuSections) { section in
+                                        Color.clear
+                                                    .frame(height: 1)
+                                                    .id("anchor-\(section.id)")
+                                        
                                         VStack(alignment: .leading, spacing: 8) {
                                             ForEach(section.items) { meal in
                                                 MealCardView(meal: meal)
@@ -53,12 +57,12 @@ struct MenuView: View {
                                                 Divider()
                                             }
                                         }
+                                        .id(section.id)
                                     }
                                     .scrollContentBackground(.hidden)
                                     .background(Color.white)
                                     .clipShape(.rect(cornerRadius: 20))
                                 }
-                                
                             } header: {
                                 StickyCategoryBar(presenter: presenter)
                             }
@@ -68,37 +72,33 @@ struct MenuView: View {
                     .onChange(of: presenter.selectedCategory) { categoryId in
                         guard presenter.hasUserInteractedWithCategory else { return }
                         withAnimation {
-                            proxy.scrollTo(categoryId, anchor: .top)
+                            proxy.scrollTo("anchor-\(categoryId)", anchor: UnitPoint(x:0.5,y: 0.08))     // Попправить, чтобы не пряталось, более удачно
                         }
                     }
                     
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Picker("Город", selection: $presenter.selectedCity) { 
-                                ForEach(presenter.cities, id: \.self) { city in
-                                    Text(city)
+                    .safeAreaInset(edge: .top, spacing: 0) {
+                        Menu {
+                            ForEach(presenter.cities, id: \.self) { city in
+                                Button(city) {
+                                    presenter.selectedCity = city
                                 }
                             }
                             
+                        } label: {
+                            HStack {
+                                Text(presenter.selectedCity)
+                                Image(systemName: "chevron.down")
+                                    .font(.subheadline)
+                                Spacer()
+                            }
+                            .foregroundStyle(.black)
+                            .padding(.bottom, 16)
+                            .padding(.horizontal, 16)
                         }
+                        .padding(.top)
+                        .background(.grayBackground)
                     }
                     
-//                    .safeAreaInset(edge: .top, alignment: .leading) {
-//                        ZStack {
-//                            Color(red: 243/255,green: 245/255,blue: 249/255)
-//                            
-//                            HStack {
-//                                Picker("Город", selection: $presenter.selectedCity) {
-//                                    ForEach(presenter.cities, id: \.self) { city in
-//                                        Text(city)
-//                                    }
-//                                }
-//                                Spacer()
-//                            }
-//                        }
-//                        .ignoresSafeArea()
-//                        .frame(height: 60)
-//                    }
                 }
             }
         }

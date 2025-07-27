@@ -12,6 +12,8 @@
 		312B4C842E33A8B60048885F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B4C7C2E33A8B60048885F /* ContentView.swift */; };
 		312B4C862E33A8B60048885F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B4C7E2E33A8B60048885F /* LoginView.swift */; };
 		312B4C892E33A8B60048885F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B4C812E33A8B60048885F /* MenuView.swift */; };
+		313DC8832E3656530023071E /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DC8822E3656530023071E /* LogoView.swift */; };
+		313DC8852E3659130023071E /* SpashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DC8842E3659130023071E /* SpashView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		312B4C7C2E33A8B60048885F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		312B4C7E2E33A8B60048885F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		312B4C812E33A8B60048885F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		313DC8822E3656530023071E /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		313DC8842E3659130023071E /* SpashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpashView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -47,6 +51,8 @@
 			children = (
 				312B4C7C2E33A8B60048885F /* ContentView.swift */,
 				312B4C7E2E33A8B60048885F /* LoginView.swift */,
+				313DC8842E3659130023071E /* SpashView.swift */,
+				313DC8822E3656530023071E /* LogoView.swift */,
 				312B4C662E319D390048885F /* MealCardView.swift */,
 				312B4C812E33A8B60048885F /* MenuView.swift */,
 				312B4C682E31B9580048885F /* StickyCategoryBar.swift */,
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313DC8832E3656530023071E /* LogoView.swift in Sources */,
+				313DC8852E3659130023071E /* SpashView.swift in Sources */,
 				312B4C842E33A8B60048885F /* ContentView.swift in Sources */,
 				312B4C862E33A8B60048885F /* LoginView.swift in Sources */,
 				312B4C892E33A8B60048885F /* MenuView.swift in Sources */,

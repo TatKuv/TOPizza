@@ -43,7 +43,7 @@ struct MealCardView: View {
                         .padding(.horizontal,10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 6)
-                                .stroke(.pink, lineWidth: 1)
+                                .stroke(.pinkLogo, lineWidth: 1)
                         )
                 }
             }

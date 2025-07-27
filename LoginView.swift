@@ -26,26 +26,7 @@ struct LoginView: View {
                 VStack {
                     Spacer()
                     
-                    HStack(spacing: 18) { // Заменить
-                        
-                        VStack {
-                            Text("то")
-                                .padding(.top, -10)
-                            Spacer()
-                        }
-                        
-                        Text("П")
-                            .scaleEffect(2)
-                        VStack {
-                            Spacer()
-                            Text("ицца")
-                        }
-                        
-                    }
-                    .foregroundStyle(.pink)
-                    .font(Font.system(size: 60, weight: .bold))
-                    .frame(width: 322,height: 115)
-                    //До сюда
+                    LogoView()
                     
                     Group {
                         TextField("\(Image(systemName: "person.fill"))  Логин", text: $loginText)
@@ -54,9 +35,12 @@ struct LoginView: View {
                     .padding()
                     .autocorrectionDisabled(true)
                     .background(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke( .grayText, lineWidth: 1)
+                    )
                     .cornerRadius(20)
                     .padding(.horizontal,16)
-                    //.shadow(radius: 1) //fix
                     
                     Spacer()
                     Spacer()
@@ -79,14 +63,19 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 48)
-                                .background(Color.pink)
+                                .background(Color.pinkLogo)
                                 .cornerRadius(20)
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.top, 8)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 20)
                     }
-                    .padding(.bottom, 16)
-                    .background(.white)
+                    .background(
+                            Color.white
+                                .clipShape(
+                                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                )
+                                .ignoresSafeArea()
+                        )
                 }
                 
                 .navigationTitle("Авторизация")
