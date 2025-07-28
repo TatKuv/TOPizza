@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     @ObservedObject var presenter: Presenter
+    @State private var showBanner = false
     
     var body: some View {
         
@@ -76,33 +77,60 @@ struct MenuView: View {
                         }
                     }
                     
-                    .safeAreaInset(edge: .top, spacing: 0) {
-                        Menu {
-                            ForEach(presenter.cities, id: \.self) { city in
-                                Button(city) {
-                                    presenter.selectedCity = city
-                                }
-                            }
-                            
-                        } label: {
-                            HStack {
-                                Text(presenter.selectedCity)
-                                Image(systemName: "chevron.down")
-                                    .font(.subheadline)
-                                Spacer()
-                            }
-                            .foregroundStyle(.black)
-                            .padding(.bottom, 16)
-                            .padding(.horizontal, 16)
+                }
+            }
+            .safeAreaInset(edge: .top, spacing: 0) {
+                Menu {
+                    ForEach(presenter.cities, id: \.self) { city in
+                        Button(city) {
+                            presenter.selectedCity = city
                         }
-                        .padding(.top)
-                        .background(.grayBackground)
                     }
                     
+                } label: {
+                    HStack(alignment: .center) {
+                        Text(presenter.selectedCity)
+                        Image(systemName: "chevron.down")
+                            .font(.subheadline)
+                        Spacer()
+                    }
+                    .foregroundStyle(.black)
+                    
+                    .overlay(alignment: .center) {
+                        if showBanner {
+                            LoginStatusBanner(isSuccess: true)
+                                .transition(.move(edge: .top).combined(with: .opacity))
+                                .zIndex(1)
+                        }
+                    }
+                    .animation(.easeInOut, value: showBanner)
                 }
+                .padding()
+                .padding(.bottom, 8)
+                .background(.grayBackground)
+            }
+            
+            .onAppear {
+                showWelcomeIfNeeded()
             }
         }
     }
+    
+    func showWelcomeIfNeeded() {
+        guard presenter.showWelcomeBanner else { return }
+        presenter.showWelcomeBanner = false
+        Task {
+            withAnimation {
+                showBanner = true
+            }
+            try? await Task.sleep(for: .seconds(2))
+            withAnimation {
+                showBanner = false
+            }
+        }
+    }
+    
+    
 }
 
 #Preview {

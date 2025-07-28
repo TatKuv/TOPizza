@@ -14,6 +14,7 @@
 		312B4C892E33A8B60048885F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B4C812E33A8B60048885F /* MenuView.swift */; };
 		313DC8832E3656530023071E /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DC8822E3656530023071E /* LogoView.swift */; };
 		313DC8852E3659130023071E /* SpashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DC8842E3659130023071E /* SpashView.swift */; };
+		313DC8972E37A88E0023071E /* LoginStatusBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DC8962E37A88E0023071E /* LoginStatusBanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		312B4C812E33A8B60048885F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		313DC8822E3656530023071E /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		313DC8842E3659130023071E /* SpashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpashView.swift; sourceTree = "<group>"; };
+		313DC8962E37A88E0023071E /* LoginStatusBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatusBanner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -51,6 +53,7 @@
 			children = (
 				312B4C7C2E33A8B60048885F /* ContentView.swift */,
 				312B4C7E2E33A8B60048885F /* LoginView.swift */,
+				313DC8962E37A88E0023071E /* LoginStatusBanner.swift */,
 				313DC8842E3659130023071E /* SpashView.swift */,
 				313DC8822E3656530023071E /* LogoView.swift */,
 				312B4C662E319D390048885F /* MealCardView.swift */,
@@ -150,6 +153,7 @@
 				312B4C892E33A8B60048885F /* MenuView.swift in Sources */,
 				312B4C692E31B9580048885F /* StickyCategoryBar.swift in Sources */,
 				312B4C672E319D390048885F /* MealCardView.swift in Sources */,
+				313DC8972E37A88E0023071E /* LoginStatusBanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

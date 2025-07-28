@@ -13,9 +13,6 @@ struct LoginView: View {
     @State private var loginText: String = ""
     @State private var passwordText: String = ""
     
-    @State private var showError = false
-    @State private var errorText = "Неверный логин или пароль"
-    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -47,14 +44,22 @@ struct LoginView: View {
                     
                 }
                 .safeAreaInset(edge: .bottom) {
+                    
                     VStack(spacing: 12) {
                         Button {
                             if loginText == "Qwerty123" && passwordText == "Qwerty123" {
-                                presenter.isLoggedIn = true
-                            } else {
                                 withAnimation {
-                                    showError = true
+                                    presenter.isLoggedIn = true
                                 }
+                            } else {
+                                    Task {
+                                        try await Task.sleep(for: .seconds(2))
+                                        presenter.showWelcomeBanner = false
+                                    }
+                            }
+                            
+                            withAnimation {
+                                presenter.showWelcomeBanner = true
                             }
                             
                         } label: {
@@ -77,9 +82,21 @@ struct LoginView: View {
                         )
                 }
                 
-                .navigationTitle("Авторизация")
-                .navigationBarTitleDisplayMode(.inline)
-                
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        
+                        ZStack {
+                            Text("Авторизация")
+                                .font(.headline)
+                            
+                            if presenter.showWelcomeBanner {
+                                    LoginStatusBanner(isSuccess: presenter.isLoggedIn)
+                                    .transition(.move(edge: .top).combined(with: .opacity))
+                                    .padding(.top)
+                                }
+                        }
+                    }
+                }
             }
         }
     }

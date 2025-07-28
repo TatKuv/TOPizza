@@ -49,7 +49,7 @@ struct ContentView: View {
         .onAppear {
             Task {
                 try await Task.sleep(for: .seconds(2))
-                withAnimation{
+                withAnimation {
                     showSplash = false
                 }
             }
